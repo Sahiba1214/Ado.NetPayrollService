@@ -46,7 +46,30 @@ namespace Payroll_Service
                 throw new Exception(e.Message);
             }
         }
+        public int DeleteEmployee(int empId)
+        {
+            try
+            {
+                Connection();
+                SqlCommand com = new SqlCommand("DeletePayrollServices", con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@id", empId);
+                con.Open();
+                int i = com.ExecuteNonQuery();
+                con.Close();
+
+                if (i >= 1)
+                    return empId;
+                else
+                    return 0;
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+
+        }
+
     }
-}
-  
-              
+    }     

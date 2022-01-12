@@ -11,7 +11,7 @@ namespace Payroll_Service
             EmployeeData data = new EmployeeData();
             while (flag)
             {
-                Console.WriteLine("Enter your Choice Number to Execute the Program Press- 1-Addition, 2-Exit");
+                Console.WriteLine("Enter your Choice Number to Execute the Program Press- 1-Addition, 2- Delete , 3-Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -33,7 +33,12 @@ namespace Payroll_Service
                         else
                             Console.WriteLine("Provide Correct Data According to Coloumn");
                         break;
-                    case 2:
+                    case 2:                             // It Will Delete Data from the table According to Their Respective ID
+                        Console.WriteLine("Enter the id to Delete Data");
+                        int num = Convert.ToInt32(Console.ReadLine());
+                        employeeConfig.DeleteEmployee(num);
+                        break;
+                    case 3:
                         flag = false;
                         break;
                 }
