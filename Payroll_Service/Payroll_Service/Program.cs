@@ -11,7 +11,7 @@ namespace Payroll_Service
             EmployeeData data = new EmployeeData();
             while (flag)
             {
-                Console.WriteLine("Enter your Choice Number to Execute the Program Press- 1-Addition, 2- Delete , 3-Exit");
+                Console.WriteLine("Enter your Choice Number to Execute the Program Press- 1-Addition, 2- Delete , 3-Update , 4-view, 5-Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -46,11 +46,17 @@ namespace Payroll_Service
                     case 4:
                         flag = false;
                         break;
+
+                    case 5:
+                        employeeConfig.GetAllEmployees(); // It Will Display all the Data According to Table
+                        break;
+                    case 6:
+                        flag = false;
+                        break;
                 }
             }
         }
     }
 }
-
 
 

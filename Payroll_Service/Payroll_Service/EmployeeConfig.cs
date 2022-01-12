@@ -96,5 +96,38 @@ namespace Payroll_Service
             }
 
         }
+        public List<EmployeeData> GetAllEmployees()
+        {
+            Connection();
+            SqlCommand com = new SqlCommand("GetPayrollService", con);
+            com.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+
+            con.Open();
+            da.Fill(dt);
+            con.Close();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                EmpList.Add(
+                    new EmployeeData
+                    {
+                        Name = Convert.ToString(dr["Name"]),
+                        Basic_pay = Convert.ToDouble(dr["Basic_pay"]),
+                        StartDate = Convert.ToDateTime(dr["Date"]),
+                        gender = Convert.ToChar(dr["gender"]),
+                        phone = Convert.ToString(dr["phone"]),
+                        Address = Convert.ToString(dr["Address"]),
+                        Department = Convert.ToString(dr["Department"]),
+                        Deduction = Convert.ToDouble(dr["Deduction"]),
+                        Taxable_pay = Convert.ToDouble(dr["Raxable_pay"]),
+                        IncomeTax_pay = Convert.ToDouble(dr["IncomeTax_pay"]),
+                        Net_Pay = Convert.ToDouble(dr["Net_pay"]),
+                    }
+                    );
+            }
+            return EmpList;
+        }
     }
 }
