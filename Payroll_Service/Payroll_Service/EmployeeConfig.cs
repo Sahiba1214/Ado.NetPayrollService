@@ -129,5 +129,36 @@ namespace Payroll_Service
             }
             return EmpList;
         }
+        public DataSet GetAllEmployees()
+        {
+            try
+            {
+                Connection();
+                SqlCommand com = new SqlCommand("GetPayrollService", con);
+                com.CommandType = CommandType.StoredProcedure;
+                DataSet dataSet = new DataSet();
+                SqlDataAdapter adapter = new SqlDataAdapter("GetPayrollService", this.con);
+                adapter.Fill(dataSet, "employee_payroll");
+                foreach (DataRow dr in dataSet.Tables["employee_payroll"].Rows)
+                {
+                    Console.WriteLine(dr["id"] + " " + dr["Name"] + " " + dr["Basic_pay"] + " " + dr["StartDate"] + " " + dr["gender"] + " " + dr["phone"] + " "
+                     + dr["Address"] + " " + dr["Department"] + " " + dr["Deduction"] + " " + dr["Taxable_pay"] + " " + dr["IncomeTax_pay"] + " " + dr["Net_Pay"]);
+                }
+                con.Close();
+                return dataSet;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public void Display()
+        {
+            foreach (var item in EmpList)
+            {
+                Console.WriteLine("\nName\tBasic_pay\t\tDate\tgender\n");
+                Console.WriteLine(item.Name + "\t" + item.Basic_pay + "\t" + item.StartDate + "\t" + item.gender);
+            }
+        }
     }
 }
