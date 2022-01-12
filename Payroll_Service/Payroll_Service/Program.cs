@@ -43,7 +43,7 @@ namespace Payroll_Service
                         }
                         break;
                     case 3:
-                        data.Name = "Gyanendra";        // It Will Update Basic Pay Where Name is Sahiba
+                        data.Name = "Sahiba";        // It Will Update Basic Pay Where Name is Sahiba
                         data.Basic_pay = 7000.45;
                         employeeConfig.UpdateEmployee(data);
                         break;
