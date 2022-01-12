@@ -71,5 +71,30 @@ namespace Payroll_Service
 
         }
 
+        public EmployeeData UpdateEmployee(EmployeeData obj)
+        {
+            try
+            {
+                Connection();
+                SqlCommand com = new SqlCommand("UpdatePayrollServices", con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@Basic_pay", obj.Basic_pay);
+                com.Parameters.AddWithValue("@Name", obj.Name);
+                con.Open();
+                int i = com.ExecuteNonQuery();
+                con.Close();
+                if (i >= 1)
+                    return obj;
+                else
+                    return null;
+
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+
+        }
     }
-    }     
+}
